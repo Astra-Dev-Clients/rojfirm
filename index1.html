@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROJFIRM LTD | Engineering & Branding</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --brand-navy: #0A2440;
+            --brand-orange: #F5A623;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f9;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            background: rgba(10, 36, 64, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 12px 0;
+            border-bottom: 3px solid var(--brand-orange);
+            z-index: 1000;
+        }
+
+        .navbar-brand { font-weight: 800; font-size: 1.4rem; color: var(--white) !important; }
+        .navbar-brand span { color: var(--brand-orange); }
+
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin: 0 10px;
+        }
+
+        .btn-nav-contact {
+            background-color: var(--brand-orange);
+            color: var(--brand-navy) !important;
+            font-weight: 700;
+            padding: 8px 15px;
+            border-radius: 4px;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1600') center/cover no-repeat;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 36, 64, 0.75);
+            z-index: 1;
+        }
+
+        .hero-content { position: relative; z-index: 2; width: 100%; }
+
+        .hero-tagline {
+            display: inline-block;
+            color: var(--brand-orange);
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            border-left: 4px solid var(--brand-orange);
+            padding-left: 12px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-weight: 800;
+            font-size: clamp(2rem, 7vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span { color: var(--brand-orange); }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin-bottom: 35px;
+        }
+
+        .hero-btns .btn {
+            padding: 14px 30px;
+            font-weight: 700;
+            border-radius: 5px;
+            text-transform: uppercase;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-main { background: var(--brand-orange); color: var(--brand-navy); margin-right: 15px; border: none; }
+        .btn-outline-custom { border: 2px solid var(--white); color: var(--white); }
+
+        /* --- SERVICE CARDS --- */
+        .service-card {
+            border: none;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
+        }
+        
+        .service-card:hover { transform: translateY(-5px); }
+        .img-wrapper { height: 200px; overflow: hidden; }
+        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+        .card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-title { color: var(--brand-navy); font-size: 1.1rem; min-height: 50px; margin-bottom: 10px; }
+        .card-text { font-size: 0.9rem; color: #666; margin-bottom: 20px; }
+
+        .btn-action-container { display: flex; gap: 8px; margin-top: auto; }
+        .btn-primary-custom, .btn-secondary-custom { 
+            flex: 1; padding: 10px 5px; border-radius: 6px; font-weight: 700; 
+            text-align: center; font-size: 0.75rem; text-decoration: none; 
+        }
+        .btn-primary-custom { background: var(--brand-orange); color: var(--brand-navy); }
+        .btn-secondary-custom { border: 2px solid var(--brand-navy); color: var(--brand-navy); }
+
+        /* --- CONTACT SECTION --- */
+        .bg-navy { background-color: var(--brand-navy); }
+        #contact .card { border-radius: 15px; }
+
+        /* --- MOBILE MEDIA QUERIES --- */
+        @media (max-width: 991px) {
+            .navbar-nav { background: var(--brand-navy); padding: 20px; border-radius: 8px; margin-top: 10px; }
+            .hero { text-align: center; padding-top: 50px; }
+            .hero-tagline { border-left: none; border-bottom: 3px solid var(--brand-orange); padding-left: 0; }
+            .hero-btns .btn { width: 100%; margin: 10px 0; }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 { font-size: 2.2rem; }
+            .section-title { font-size: 1.5rem; }
+            .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; font-size: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">ROJFIRM <span>LTD</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Engineering</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Branding</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+                <div class="text-center text-lg-start">
+                    <a href="tel:0742241913" class="btn btn-nav-contact">Call Us: 0742 241 913</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container hero-content text-center text-lg-start">
+            <span class="hero-tagline">GENERAL ENGINEERING SPECIALISTS</span>
+            <h1>Constructing The <br><span>Future</span> With Precision.</h1>
+            <p>ROJFIRM LTD delivers elite-grade water towers, solar structures, and industrial roofing solutions designed for the toughest environments.</p>
+            <div class="hero-btns">
+                <a href="#services" class="btn btn-main">View Services</a>
+                <a href="mailto:rojfirmlimited@gmail.com" class="btn btn-outline-custom">Get A Quote</a>
+            </div>
+        </div>
+    </header>
+
+      <section class="py-5 text-white bg-navy">
+        <div class="container text-center">
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <h2 class="fw-bold text-orange">150+</h2>
+                    <p class="small text-uppercase">Projects Completed</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h2 class="fw-bold text-orange">10+</h2>
+                    <p class="small text-uppercase">Counties Served</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h2 class="fw-bold text-orange">100%</h2>
+                    <p class="small text-uppercase">Safety Record</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h2 class="fw-bold text-orange">24/7</h2>
+                    <p class="small text-uppercase">Support Available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section id="services" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold" style="letter-spacing: 2px;">Our Specializations</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card service-card">
+                        <div class="img-wrapper"><img src="./assets/images/water.png" alt="Water Towers"></div>
+                        <div class="card-body">
+                            <h4 class="card-title">Water Towers & Steel Tanks</h4>
+                            <p class="card-text">Specialized engineering for high-capacity industrial water storage solutions.</p>
+                            <div class="btn-action-container">
+                                <a href="https://wa.me/254742241913?text=Hello%20there!%20I%20would%20like%20to%20request%20a%20quote%20for%20your%20water%20towers%20and%20steel%20tanks." class="btn-primary-custom text-white">Request Quote</a>
+                                <a href="#" class="btn-secondary-custom">Our Work</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card service-card">
+                        <div class="img-wrapper"><img src="./assets/images/solars.jpg" alt="Solar"></div>
+                        <div class="card-body">
+                            <h4 class="card-title">Solarization & Structures</h4>
+                            <p class="card-text">Custom mounts and frameworks designed for efficient solar panel integration.</p>
+                            <div class="btn-action-container">
+                                <a href="https://wa.me/254742241913?text=Hello%20there!%20I%20would%20like%20to%20request%20a%20quote%20for%20your%20solarization%20and%20structures." class="btn-primary-custom text-white">Request Quote</a>
+                                <a href="#" class="btn-secondary-custom">Our Work</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card service-card">
+                        <div class="img-wrapper"><img src="./assets/images/godown.png" alt="Godown"></div>
+                        <div class="card-body">
+                            <h4 class="card-title">Godown Roofing</h4>
+                            <p class="card-text">Professional industrial roofing and steel truss installation for large warehouses.</p>
+                            <div class="btn-action-container">
+                                <a href="https://wa.me/254742241913?text=Hello%20there!%20I%20would%20like%20to%20request%20a%20quote%20for%20your%20godown%20roofing%20services." class="btn-primary-custom text-white">Request Quote</a>
+                                <a href="#" class="btn-secondary-custom">Our Work</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card service-card">
+                        <div class="img-wrapper"><img src="./assets/images/billboard.png" alt="Billboards"></div>
+                        <div class="card-body">
+                            <h4 class="card-title">Billboard Structures</h4>
+                            <p class="card-text">Structural design and installation of heavy-duty advertising billboards.</p>
+                            <div class="btn-action-container">
+                                <a href="https://wa.me/254742241913?text=Hello%20there!%20I%20would%20like%20to%20request%20a%20quote%20for%20your%20billboard%20structures." class="btn-primary-custom text-white">Request Quote</a>
+                                <a href="#" class="btn-secondary-custom">Our Work</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card service-card">
+                        <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600" alt="Signage"></div>
+                        <div class="card-body">
+                            <h4 class="card-title">Signage & Display</h4>
+                            <p class="card-text">Creative and durable corporate signage solutions for business premises.</p>
+                            <div class="btn-action-container">
+                                <a href="https://wa.me/254742241913?text=Hello%20there!%20I%20would%20like%20to%20request%20a%20quote%20for%20your%20signage%20and%20display%20services." class="btn-primary-custom text-white">Request Quote</a>
+                                <a href="#" class="btn-secondary-custom">Our Work</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card service-card">
+                        <div class="img-wrapper"><img src="./assets/images/printing1.png" alt="Branding"></div>
+                        <div class="card-body">
+                            <h4 class="card-title">Printing & Branding</h4>
+                            <p class="card-text">Large format printing and comprehensive brand identity for your company.</p>
+                            <div class="btn-action-container">
+                                <a href="https://wa.me/254742241913?text=Hello%20there!%20I%20would%20like%20to%20request%20a%20quote%20for%20your%20printing%20and%20branding%20services." class="btn-primary-custom text-white">Request Quote</a>
+                                <a href="#" class="btn-secondary-custom">Our Work</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+  
+
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card border-0 shadow overflow-hidden">
+                        <div class="row g-0">
+                            <div class="col-md-5 bg-navy text-white p-4 p-md-5">
+                                <h2 class="fw-bold mb-4">Get In <span class="text-orange">Touch</span></h2>
+                                <div class="mb-3 d-flex align-items-center"><i class="fas fa-phone-alt text-orange me-3"></i> 0742241913</div>
+                                <div class="mb-3 d-flex align-items-center"><i class="fas fa-envelope text-orange me-3"></i> rojfirmlimited@gmail.com</div>
+                            </div>
+                            <div class="col-md-7 bg-white p-4 p-md-5">
+                                <form>
+                                    <div class="row g-3">
+                                        <div class="col-12"><input type="text" class="form-control" placeholder="Name" required></div>
+                                        <div class="col-12"><input type="tel" class="form-control" placeholder="Phone" required></div>
+                                        <div class="col-12">
+                                            <select class="form-select" required>
+                                                <option selected disabled>Choose Service</option>
+                                                <option>Engineering</option>
+                                                <option>Branding</option>
+                                            </select>
+                                        </div>
+
+                                                       <!-- message -->
+                                    <div class="col-12">
+                                        <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
+                                    </div>
+
+                                        <div class="col-12"><button type="submit" class="btn btn-warning w-100 fw-bold py-3">SEND INQUIRY</button></div>
+                                    </div>
+
+                     
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/254742241913" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer class="py-5 bg-navy text-white text-center">
+        <div class="container">
+            <h3>ROJFIRM <span style="color:var(--brand-orange)">LTD</span></h3>
+            <p class="opacity-50 small">© 2026 ROJFIRM LTD. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <style>
+        .bg-navy { background-color: var(--brand-navy); }
+        .text-orange { color: var(--brand-orange); }
+        
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
+            background-color: #25d366; color: #FFF; border-radius: 50px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 9999;
+            text-decoration: none;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

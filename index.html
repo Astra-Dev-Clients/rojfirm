@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROJFIRM LTD | Engineering & Branding</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --brand-navy: #0A2440;
+            --brand-orange: #F5A623;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f9;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            background: rgba(10, 36, 64, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 18px 0;
+            border-bottom: 3px solid var(--brand-orange);
+            z-index: 1000;
+        }
+
+        .navbar-brand { font-weight: 800; font-size: 1.6rem; color: var(--white) !important; }
+        .navbar-brand span { color: var(--brand-orange); }
+
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin: 0 15px;
+        }
+
+        .btn-nav-contact {
+            background-color: var(--brand-orange);
+            color: var(--brand-navy) !important;
+            font-weight: 700;
+            padding: 8px 20px;
+            border-radius: 4px;
+        }
+
+        /* --- FULL BACKGROUND HERO --- */
+        .hero {
+            position: relative;
+            min-height: 90vh; /* Nearly full screen */
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            /* Full width background image */
+            background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1600') center/cover no-repeat fixed;
+        }
+
+        /* Stronger dark overlay for full background readability */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 36, 64, 0.75); /* Dark tint */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-tagline {
+            display: inline-block;
+            color: var(--brand-orange);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            border-left: 5px solid var(--brand-orange);
+            padding-left: 15px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-weight: 800;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 30px;
+            max-width: 900px;
+        }
+
+        .hero h1 span { color: var(--brand-orange); }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 650px;
+            margin-bottom: 45px;
+            line-height: 1.7;
+        }
+
+        .hero-btns .btn {
+            padding: 16px 40px;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-main {
+            background-color: var(--brand-orange);
+            color: var(--brand-navy);
+            border: none;
+            margin-right: 20px;
+            box-shadow: 0 10px 20px rgba(245, 166, 35, 0.3);
+        }
+
+        .btn-outline-custom {
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-main:hover { background-color: var(--white); transform: translateY(-3px); }
+        .btn-outline-custom:hover { background: var(--white); color: var(--brand-navy); }
+
+        /* --- SERVICE CARDS --- */
+        .service-card {
+            border: none;
+            border-radius: 12px;
+            background: #fff;
+            transition: 0.3s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-card:hover { transform: translateY(-10px); }
+        .img-wrapper { height: 220px; overflow: hidden; }
+        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+        .card-body { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-title { color: var(--brand-navy); font-weight: 700; min-height: 50px; margin-bottom: 15px; display: flex; align-items: center; }
+        .card-text { color: #666; margin-bottom: 30px; flex-grow: 1; }
+
+        .btn-action-container { display: flex; gap: 12px; }
+        .btn-primary-custom { background: var(--brand-orange); color: var(--brand-navy); flex: 1; padding: 12px; border-radius: 6px; font-weight: 700; text-align: center; font-size: 0.8rem; text-decoration: none; }
+        .btn-secondary-custom { border: 2px solid var(--brand-navy); color: var(--brand-navy); flex: 1; padding: 12px; border-radius: 6px; font-weight: 700; text-align: center; font-size: 0.8rem; text-decoration: none; transition: 0.3s; }
+        .btn-secondary-custom:hover { background: var(--brand-navy); color: #fff; }
+
+        /* --- FOOTER --- */
+        footer { background: var(--brand-navy); color: #fff; padding: 70px 0 30px; }
+
+        @media (max-width: 768px) {
+            .hero { text-align: center; }
+            .hero h1 { font-size: 3rem; }
+            .hero-tagline { border-left: none; border-bottom: 3px solid var(--brand-orange); padding-left: 0; }
+            .hero-btns .btn { width: 100%; margin: 10px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">ROJFIRM <span>LTD</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Engineering</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Branding</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+                <a href="tel:0742241913" class="btn btn-nav-contact">Call Us: 0742 241 913</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container hero-content text-center text-md-start">
+            <span class="hero-tagline">GENERAL ENGINEERING SPECIALISTS</span>
+            <h1>Constructing The <br><span>Future</span> With Precision.</h1>
+            <p>ROJFIRM LTD delivers elite-grade water towers, solar structures, and industrial roofing solutions designed for the toughest environments.</p>
+            <div class="hero-btns">
+                <a href="#services" class="btn btn-main">View Services</a>
+                <a href="mailto:rojfirmlimited@gmail.com" class="btn btn-outline-custom">Get A Quote</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="services" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold" style="letter-spacing: 2px;">Our Specializations</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card service-card">
+                        <div class="img-wrapper"><img src="./assets/images/water.png" alt="Water Towers"></div>
+                        <div class="card-body">
+                            <h4 class="card-title">Water Towers & Steel Tanks</h4>
+                            <p class="card-text">Specialized engineering for high-capacity industrial water storage solutions.</p>
+                            <div class="btn-action-container">
+                                <a href="https://wa.me/254742241913?text=Hello%20there!%20I%20would%20like%20to%20request%20a%20quote%20for%20your%20water%20towers%20and%20steel%20tanks." class="btn-primary-custom">Request Quote</a>
+                                <a href="#" class="btn-secondary-custom">Our Work</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card service-card">
+                        <div class="img-wrapper"><img src="./assets/images/solars.jpg" alt="Solar"></div>
+                        <div class="card-body">
+                            <h4 class="card-title">Solarization & Structures</h4>
+                            <p class="card-text">Custom mounts and frameworks designed for efficient solar panel integration.</p>
+                            <div class="btn-action-container">
+                                <a href="https://wa.me/254742241913?text=Hello%20there!%20I%20would%20like%20to%20request%20a%20quote%20for%20your%20solarization%20and%20structures." class="btn-primary-custom">Request Quote</a>
+                                <a href="#" class="btn-secondary-custom">Our Work</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card service-card">
+                        <div class="img-wrapper"><img src="./assets/images/godown.png" alt="Godown"></div>
+                        <div class="card-body">
+                            <h4 class="card-title">Godown Roofing</h4>
+                            <p class="card-text">Professional industrial roofing and steel truss installation for large warehouses.</p>
+                            <div class="btn-action-container">
+                                <a href="https://wa.me/254742241913?text=Hello%20there!%20I%20would%20like%20to%20request%20a%20quote%20for%20your%20godown%20roofing%20services." class="btn-primary-custom">Request Quote</a>
+                                <a href="#" class="btn-secondary-custom">Our Work</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card service-card">
+                        <div class="img-wrapper"><img src="./assets/images/billboard.png" alt="Billboards"></div>
+                        <div class="card-body">
+                            <h4 class="card-title">Billboard Structures</h4>
+                            <p class="card-text">Structural design and installation of heavy-duty advertising billboards.</p>
+                            <div class="btn-action-container">
+                                <a href="https://wa.me/254742241913?text=Hello%20there!%20I%20would%20like%20to%20request%20a%20quote%20for%20your%20billboard%20structures." class="btn-primary-custom">Request Quote</a>
+                                <a href="#" class="btn-secondary-custom">Our Work</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card service-card">
+                        <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600" alt="Signage"></div>
+                        <div class="card-body">
+                            <h4 class="card-title">Signage & Display</h4>
+                            <p class="card-text">Creative and durable corporate signage solutions for business premises.</p>
+                            <div class="btn-action-container">
+                                <a href="https://wa.me/254742241913?text=Hello%20there!%20I%20would%20like%20to%20request%20a%20quote%20for%20your%20signage%20and%20display%20services." class="btn-primary-custom">Request Quote</a>
+                                <a href="#" class="btn-secondary-custom">Our Work</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card service-card">
+                        <div class="img-wrapper"><img src="./assets/images/printing1.png" alt="Branding"></div>
+                        <div class="card-body">
+                            <h4 class="card-title">Printing & Branding</h4>
+                            <p class="card-text">Large format printing and comprehensive brand identity for your company.</p>
+                            <div class="btn-action-container">
+                                <a href="https://wa.me/254742241913?text=Hello%20there!%20I%20would%20like%20to%20request%20a%20quote%20for%20your%20printing%20and%20branding%20services." class="btn-primary-custom">Request Quote</a>
+                                <a href="#" class="btn-secondary-custom">Our Work</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-5  text-white " style="background-color: var(--brand-navy);">
+    <div class="container text-center">
+        <div class="row g-4">
+            <div class="col-md-3">
+                <h2 class="fw-bold text-orange">150+</h2>
+                <p class="small   text-uppercase">Projects Completed</p>
+            </div>
+            <div class="col-md-3">
+                <h2 class="fw-bold text-orange">10+</h2>
+                <p class="small  text-uppercase">Counties Served</p>
+            </div>
+            <div class="col-md-3">
+                <h2 class="fw-bold text-orange">100%</h2>
+                <p class="small   text-uppercase">Safety Record</p>
+            </div>
+            <div class="col-md-3">
+                <h2 class="fw-bold text-orange">24/7</h2>
+                <p class="small text-uppercase">Engineering Support</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<!-- why choose us section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 fw-bold" style="letter-spacing: 2px; text-decoration: underline;">Why Choose Us</h2>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6 text-center">
+                <i class="fas fa-tools fa-3x mb-3" style="color: var(--brand-orange);"></i>
+                <h4 class="fw-bold mb-3" style="color: var(--brand-navy);">Expert Engineering</h4>
+                <p class="text-muted">Over a decade of experience in delivering precision-engineered solutions for industrial and commercial projects.</p>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <i class="fas fa-shield-alt fa-3x mb-3" style="color: var(--brand-orange);"></i>
+                <h4 class="fw-bold mb-3" style="color: var(--brand-navy);">Quality Assurance</h4>
+                <p class="text-muted">Rigorous quality control and adherence to international standards ensure durable, safe, and efficient structures.</p>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <i class="fas fa-clock fa-3x mb-3" style="color: var(--brand-orange);"></i>
+                <h4 class="fw-bold mb-3" style="color: var(--brand-navy);">Timely Delivery</h4>
+                <p class="text-muted">We prioritize deadlines and provide 24/7 support to keep your projects on track and within budget.</p>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <i class="fas fa-leaf fa-3x mb-3" style="color: var(--brand-orange);"></i>
+                <h4 class="fw-bold mb-3" style="color: var(--brand-navy);">Sustainable Solutions</h4>
+                <p class="text-muted">Incorporating eco-friendly materials and solar technologies for a greener, more sustainable future.</p>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <i class="fas fa-users fa-3x mb-3" style="color: var(--brand-orange);"></i>
+                <h4 class="fw-bold mb-3" style="color: var(--brand-navy);">Customer-Centric</h4>
+                <p class="text-muted">Tailored consultations and personalized services to meet the unique needs of each client.</p>
+            </div>
+            <div class="col-lg-4 col-md-6 text-center">
+                <i class="fas fa-award fa-3x mb-3" style="color: var(--brand-orange);"></i>
+                <h4 class="fw-bold mb-3" style="color: var(--brand-navy);">Proven Track Record</h4>
+                <p class="text-muted">150+ successful projects across multiple counties, backed by a 100% safety record.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="contact" class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card border-0 shadow-lg overflow-hidden">
+                    <div class="row g-0">
+                        <div class="col-md-5 bg-navy text-white p-5 d-flex flex-column justify-content-center">
+                            <h2 class="fw-bold mb-4">Get In <span class="text-orange">Touch</span></h2>
+                            <p class="text-white-50 mb-5">Have a specific project in mind? Fill out the form and our technical team will reach out with a formal proposal.</p>
+                            
+                            <div class="d-flex mb-4">
+                                <i class="fas fa-map-marker-alt text-orange me-3 fs-4"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Our Location</h6>
+                                    <p class="small mb-0">Nairobi, Kenya</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex mb-4">
+                                <i class="fas fa-phone-alt text-orange me-3 fs-4"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Call Us</h6>
+                                    <p class="small mb-0">0742241913 / 0739605047</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex">
+                                <i class="fas fa-envelope text-orange me-3 fs-4"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Email Address</h6>
+                                    <p class="small mb-0">rojfirmlimited@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-7 bg-white p-5">
+                            <form id="inquiryForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-bold text-uppercase">Full Name</label>
+                                        <input type="text" class="form-control bg-light border-0" placeholder="e.g. John Doe" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-bold text-uppercase">Phone Number</label>
+                                        <input type="tel" class="form-control bg-light border-0" placeholder="e.g. 0712 345 678" required>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label small fw-bold text-uppercase">Service Required</label>
+                                        <select class="form-select bg-light border-0" required>
+                                            <option value="" selected disabled>Select a service...</option>
+                                            <option value="water-towers">Water Towers & Steel Tanks</option>
+                                            <option value="solar">Solarization & Structures</option>
+                                            <option value="roofing">Godown Roofing</option>
+                                            <option value="billboards">Billboard Structures</option>
+                                            <option value="signage">Signage & Display</option>
+                                            <option value="branding">Printing & Branding</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label small fw-bold text-uppercase">Message / Project Details</label>
+                                        <textarea class="form-control bg-light border-0" rows="4" placeholder="Tell us about your project location and requirements..."></textarea>
+                                    </div>
+                                    <div class="col-md-12 mt-4">
+                                        <button type="submit" class="btn btn-warning w-100 fw-bold py-3 shadow-sm text-navy">
+                                            SEND INQUIRY <i class="fas fa-paper-plane ms-2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .bg-navy { background-color: var(--brand-navy); }
+    .text-navy { color: var(--brand-navy); }
+    
+    .form-control:focus, .form-select:focus {
+        background-color: #fff !important;
+        border: 1px solid var(--brand-orange) !important;
+        box-shadow: none;
+    }
+
+    #contact .card {
+        border-radius: 20px;
+    }
+
+    @media (max-width: 768px) {
+        #contact .p-5 {
+            padding: 30px !important;
+        }
+    }
+</style>
+
+
+
+<a href="https://wa.me/254742241913" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="float-tooltip">Chat with us</span>
+    </a>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+                    <h3 class="fw-bold mb-4">ROJFIRM <span style="color:var(--brand-orange)">LTD</span></h3>
+                    <p class="text-white-50 pe-lg-4">
+                        Leading the way in general engineering, industrial roofing, and solarization across Kenya. Building foundations that last for generations.
+                    </p>
+                    <div class="social-links mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                    <h5 class="text-white fw-bold mb-4">Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#services">Our Services</a></li>
+                        <li><a href="#">Latest Projects</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+                    <h5 class="text-white fw-bold mb-4">Expertise</h5>
+                    <ul class="list-unstyled footer-links text-white-50">
+                        <li>Water Tower Engineering</li>
+                        <li>Industrial Solarization</li>
+                        <li>Godown & Warehouse Roofing</li>
+                        <li>Billboard Fabrication</li>
+                        <li>Corporate Branding</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white fw-bold mb-4">Get In Touch</h5>
+                    <p class="mb-2"><i class="fas fa-user-tie me-2 text-orange"></i> <strong>Rodgers Asembo</strong></p>
+                    <p class="small text-white-50 mb-3">Founder & CEO</p>
+                    <p class="mb-2"><i class="fas fa-phone-alt me-2 text-orange"></i> 0742241913</p>
+                    <p class="mb-2"><i class="fas fa-phone-alt me-2 text-orange"></i> 0739605047</p>
+                    <p class="mb-0"><i class="fas fa-envelope me-2 text-orange"></i> rojfirmlimited@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom mt-5 pt-4">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="small mb-0 opacity-50">© 2026 ROJFIRM LTD. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <p class="small mb-0 opacity-50">Designed for Engineering Excellence</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        /* --- FOOTER STYLING --- */
+        footer {
+            background-color: var(--brand-navy);
+            color: #ffffff;
+            padding: 80px 0 30px;
+            position: relative;
+        }
+
+        .text-orange { color: var(--brand-orange) !important; }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--brand-orange);
+            padding-left: 5px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: var(--brand-orange);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- FLOATING WHATSAPP ICON --- */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            transform: scale(1.1);
+            color: #fff;
+        }
+
+        .float-tooltip {
+            position: absolute;
+            right: 70px;
+            background: #333;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+        }
+
+        .whatsapp-float:hover .float-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 25px;
+            }
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
